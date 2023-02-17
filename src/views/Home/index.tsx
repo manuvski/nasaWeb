@@ -1,13 +1,31 @@
-import { FC, useState } from "react"
-
-
+import { FC, useCallback, useEffect, useState } from "react";
+import { getMars, Mars } from "../../services/api";
 
 const Home: FC = () => {
-    const [data, setData] = useState <string | null>(null)
+  const [marsList, setMarsList] = useState<Mars[]>([]);
 
-    return(
-        <div></div>
-    )
-}
+  const getMarsList = async () => {
+    const mars = await getMars();
+    setMarsList(mars);
+  };
 
-export default Home
+  useEffect(() => {
+    getMarsList();
+  }, [getMarsList]);
+
+  return (
+    <div>
+      {/* {marsList.map((marslist, index) => (
+        <>
+          key={index}
+          id={marslist.id}
+          nasaId={marslist.nasaId} 
+          sol={marslist.sol}
+          image={marslist}
+        </>
+      ))} */}
+    </div>
+  );
+};
+
+export default Home;

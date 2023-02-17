@@ -1,7 +1,7 @@
 import { FC, memo, useCallback } from 'react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import { signInWithEmailAndPassword } from 'firebase/auth'
+// import { createUserWithEmailAndPassword } from 'firebase/auth'
 // import { auth } from '../../../services/fireabase'
 import {
   Form,
@@ -17,13 +17,11 @@ import { initialValues, validationSchema } from './constants'
 // import { BackButton } from '../../../components/Navbar/styles'
 import { setToken } from '../../../services/storage'
 
-const LoginForm: FC = () => {
+const SignupForm: FC = () => {
   const navigate = useNavigate()
-//   const [email, setEmail] = useState('')
-//   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
 
-  const handleLogin = async (values: typeof initialValues) => {
+  const handleSignup = async (values: typeof initialValues) => {
     try {
       const response = await fetch('http://localhost:8000/auth/signup', {
         method: 'POST',
@@ -49,7 +47,6 @@ const LoginForm: FC = () => {
   };
 
   const goToBack = useCallback(() => {
- 
     navigate('/')
   }, [navigate])
 
@@ -57,7 +54,7 @@ const LoginForm: FC = () => {
     <FormContainer>
       <Formik
         validationSchema={validationSchema}
-        onSubmit={handleLogin}
+        onSubmit={handleSignup}
         initialValues={initialValues}
       >
         <Form>
@@ -79,7 +76,7 @@ const LoginForm: FC = () => {
               </InputContainer>
             )}
           </Field>
-          <FormButton type="submit">Login</FormButton>
+          <FormButton type="submit">SignUp</FormButton>
           {/* <BackButton onClick={goToBack}>🔙</BackButton> */}
         </Form>
       </Formik>
@@ -87,6 +84,4 @@ const LoginForm: FC = () => {
   )
 }
 
-export default memo(LoginForm)
-
-
+export default memo(SignupForm)

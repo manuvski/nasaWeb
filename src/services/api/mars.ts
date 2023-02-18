@@ -1,7 +1,7 @@
 import { getToken } from "../storage";
 
 export type Mars = {
-  id: number;
+  id: string;
   nasaId: number;
   sol: number;
   image: string;    

@@ -1,6 +1,6 @@
-import { FC, memo, useCallback } from 'react'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { FC, memo, useCallback } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Form,
   FormButton,
@@ -9,29 +9,29 @@ import {
   Label,
   Error,
   InputContainer,
-} from './styles'
-import { Formik, Field } from 'formik'
-import { initialValues, validationSchema } from './constants'
+} from "./styles";
+import { Formik, Field } from "formik";
+import { initialValues, validationSchema } from "./constants";
 // import { BackButton } from '../../../components/Navbar/styles'
-import { signup } from '../../../services/api/auth'
+import { signup } from "../../../services/api/auth";
 
 const SignupForm: FC = () => {
-  const navigate = useNavigate()
-  const [error, setError] = useState<string | null>(null)
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
   const handleSignup = async (values: typeof initialValues) => {
     const signupError = await signup(values);
 
-      if (!signupError) {
-        navigate('/home ');
-      } else {
-        setError(signupError);
-      }
+    if (!signupError) {
+      navigate("/home ");
+    } else {
+      setError(signupError);
+    }
   };
 
   const goToBack = useCallback(() => {
-    navigate('/')
-  }, [navigate])
+    navigate("/");
+  }, [navigate]);
 
   return (
     <FormContainer>
@@ -64,7 +64,7 @@ const SignupForm: FC = () => {
         </Form>
       </Formik>
     </FormContainer>
-  )
-}
+  );
+};
 
-export default memo(SignupForm)
+export default memo(SignupForm);
